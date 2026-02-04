@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Surprise!</title>
+
+  <!-- Ao Haru Ride–style fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Zen+Maru+Gothic:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Zen Maru Gothic', sans-serif;
+
+      background:
+        linear-gradient(
+          rgba(255,255,255,0.55),
+          rgba(255,255,255,0.55)
+        ),
+        url("background.jpg");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 25px;
+      padding: 30px;
+      text-align: center;
+      max-width: 360px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      border: 4px dashed #f9a8d4;
+      animation: fadeIn 1.2s ease;
+      backdrop-filter: blur(4px);
+    }
+
+    img {
+      width: 100%;
+      border-radius: 18px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: 'Yomogi', cursive;
+      color: #1e3a8a;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    p {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: #334155;
+      font-size: 15px;
+      margin-bottom: 22px;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    button {
+      font-family: 'Yomogi', cursive;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .yes {
+      background-color: #60a5fa;
+      color: white;
+    }
+
+    .no {
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <img id="mainGif" src="shy.gif" alt="gif">
+
+    <h1>For Niah,</h1>
+    <p id="text">
+      I know you probably lost interest in me before you really got to know me…<br>
+      but I still wanted to try.<br><br>
+      Can we still be friends?
+    </p>
+
+    <div class="buttons">
+      <button class="yes" id="yesBtn" onclick="yesClick()">Yes</button>
+      <button class="no" onclick="noClick()">No</button>
+    </div>
+  </div>
+
+  <script>
+    let noCount = 0;
+    let yesSize = 1;
+
+    function yesClick() {
+      document.getElementById("card").innerHTML = `
+        <img src="yes.gif" alt="yes gif">
+        <h1>Thank you </h1>
+        <p>
+         I’m glad we can stay in touch.<br>
+           I hope we get to know each other better :)
+        </p>
+      `;
+    }
+
+    function noClick() {
+      noCount++;
+
+      const gif = document.getElementById("mainGif");
+      const text = document.getElementById("text");
+      const yesBtn = document.getElementById("yesBtn");
+
+      gif.src = "no.gif";
+
+      if (noCount === 1) {
+        text.innerHTML = "It's okay!";
+      } else if (noCount === 2) {
+        text.innerHTML = "Thanks for being honest.";
+      } else if (noCount === 3) {
+        text.innerHTML = "I wish you well.";
+      }
+
+    }
+  </script>
+
+</body>
+</html>
